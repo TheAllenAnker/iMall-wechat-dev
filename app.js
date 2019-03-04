@@ -2,13 +2,13 @@ import mock from "./utils/mock";
 
 //app.js
 App({
-  serverUrl: "",
   onLaunch: function () {
     Object.assign(this.globalData, mock)
     // console.log(this.globalData);
   },
+  
   globalData: {
     userInfo: null,
-    serverUrl: ''
+    serverUrl: "http://192.168.137.196:8080/iMall"
   }
 })

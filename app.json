@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/discovery/discovery",
     "pages/cart/cart",
@@ -7,7 +7,9 @@
     "pages/detail/detail",
     "pages/channel/phone/phone",
     "pages/channel/tv/tv",
-    "pages/channel/computer/computer"
+    "pages/channel/computer/computer",
+    "pages/login/login",
+    "pages/register/register"
   ],
   "window": {
     "backgroundTextStyle": "light",

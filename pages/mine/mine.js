@@ -6,10 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null,
+    avatar: "../static/images/mine/tou.png",
+    userInfo: app.globalData.userInfo,
 
-    orderItems: [
-      {
+    orderItems: [{
         typeId: 0,
         name: '待付款',
         url: 'bill',
@@ -37,90 +37,111 @@ Page({
   },
 
 
-// 查看全部订单
-  toOrders: function(){
+  // 查看全部订单
+  toOrders: function() {
     console.log('toOrders');
   },
-// 查看我的收藏
-  toCollection: function(){
+  // 查看我的收藏
+  toCollection: function() {
     console.log('toCollection')
   },
 
-// 增加收货地址
-  toAddress:function(){
+  // 增加收货地址
+  toAddress: function() {
     console.log('toAddress')
     wx.navigateTo({
       url: '../Address/Address',
     })
-},
-// 跳转到vip中心
-toVipCenter:function(){
-  wx.navigateTo({
-    url: '../vip/vip',
-  })
-},
-
-toMyComments: function() {
-  console.log('toMyComments');
-},
-
-toLogin: function() {
-  console.log('toLogin');
-},
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  },
+  // 跳转到vip中心
+  toVipCenter: function() {
+    wx.navigateTo({
+      url: '../vip/vip',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  toMyComments: function() {
+    console.log('toMyComments');
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  toLogin: function() {
+    wx.navigateTo({
+      url: '../login/login',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+  changeAvatar: function() {
+    var me = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album'],
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths;
+        console.log(tempFilePaths);
 
+        wx.showLoading({
+          title: '上传中...',
+        })
+        var serverUrl = app.serverUrl;
+        // fixme 修改原有的全局对象为本地缓存
+        var userInfo = app.getGlobalUserInfo();
+
+        wx.uploadFile({
+          url: serverUrl + '/user/uploadAvatar?userId=' + userInfo.id,  //app.userInfo.id,
+          filePath: tempFilePaths[0],
+          name: 'file',
+          header: {
+            'content-type': 'application/json', // 默认值
+            'headerUserId': userInfo.id,
+            'headerUserToken': userInfo.userToken
+          },
+          success: function (res) {
+            var data = JSON.parse(res.data);
+            console.log(data);
+            wx.hideLoading();
+            if (data.status == 200) {
+              wx.showToast({
+                title: '上传成功',
+                icon: "success"
+              });
+
+              var imageUrl = data.data;
+              me.setData({
+                faceUrl: serverUrl + imageUrl
+              });
+
+            } else if (data.status == 500) {
+              wx.showToast({
+                title: data.msg
+              });
+            } else if (res.data.status == 502) {
+              wx.showToast({
+                title: res.data.msg,
+                duration: 2000,
+                icon: "none",
+                success: function () {
+                  wx.redirectTo({
+                    url: '../mine/mine',
+                  })
+                }
+              });
+
+            }
+
+          }
+        })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  onLoad: function (params) {
+    // var me = this;
+    // // var user = app.userInfo;
+    // // fixme 修改原有的全局对象为本地缓存
+    // var user = app.globalData.userInfo;
+    // if(user != null) {
 
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    // }
   }
 })

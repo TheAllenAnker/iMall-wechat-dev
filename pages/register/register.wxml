@@ -1,0 +1,63 @@
+<view>
+
+
+  <view class='headers'>
+    <image class='image' src="../static/images/logo.png"></image>
+  </view>
+
+
+
+  <view class="login-from">
+    <form bindsubmit='doRegister'>
+
+      <view class="line"></view>
+      <!--账号-->
+      <view class="inputView">
+
+        <label class="loginLabel">用户名</label>
+        <input name="username" value='' class="inputText" placeholder="请输入账号" />
+      </view>
+
+      <view class="line"></view>
+
+      <!--密码-->
+      <view class="inputView">
+
+        <label class="loginLabel">密码</label>
+        <input name="password" value='' class="inputText" password="true" placeholder="请输入密码" />
+      </view>
+      <view class="line"></view>
+
+      <!--密码确认-->
+      <view class="inputView">
+
+        <label class="loginLabel">密码确认</label>
+        <input name="password" value='' class="inputText" password="true" placeholder="输入密码" />
+      </view>
+      <view class="line"></view>
+      <!--邮箱-->
+      <view class="inputView">
+
+        <label class="loginLabel">邮箱</label>
+        <input name="username" value='' class="inputText" placeholder="请输入邮箱" />
+      </view>
+      <view class="line"></view>
+
+      <!--手机号-->
+      <view class="inputView">
+
+        <label class="loginLabel">手机</label>
+        <input name="username" value='' class="inputText" placeholder="请输入手机号" />
+      </view>
+      <view class="line"></view>
+
+
+
+      <!--按钮-->
+      <!-- style="background-image: url('../images/1.png')" -->
+      <view class='button'>
+        <button class="loginBtn" form-type='submit'>确认注册</button>
+      </view>
+    </form>
+  </view>
+</view>
