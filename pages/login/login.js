@@ -22,7 +22,7 @@ Page({
         duration: 3000
       })
     } else {
-      var serverUrl = app.serverUrl;
+      var serverUrl = app.globalData.serverUrl;
       wx.showLoading({
         title: '请等待...',
       });
@@ -37,8 +37,7 @@ Page({
         header: {
           'content-type': 'application/json' // 默认值
         },
-        success: function (res) {
-          console.log(res.data);
+        success: function(res) {
           wx.hideLoading();
           if (res.data.status == 200) {
             // 登录成功跳转 
@@ -47,23 +46,16 @@ Page({
               icon: 'success',
               duration: 2000
             });
-            // app.userInfo = res.data.data;
-            // fixme 修改原有的全局对象为本地缓存
-            app.setGlobalUserInfo(res.data.data);
-            // 页面跳转
-
-            var redirectUrl = me.redirectUrl;
-            if (redirectUrl != null && redirectUrl != undefined && redirectUrl != '') {
-              wx.redirectTo({
-                url: redirectUrl,
-              })
-            } else {
-              wx.redirectTo({
-                url: '../mine/mine',
-              })
-            }
-
-          } else if (res.data.status == 500) {
+            app.globalData.userInfo = res.data.data;
+            wx.switchTab({
+              url: '../mine/mine',
+              success: function(e) {
+                var page = getCurrentPages().pop();
+                if (page == undefined || page == null) return;
+                page.onLoad();
+              }
+            });
+          } else {
             // 失败弹出框
             wx.showToast({
               title: res.data.msg,

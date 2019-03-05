@@ -7,7 +7,6 @@ Page({
    */
   data: {
     avatar: "../static/images/mine/tou.png",
-    userInfo: app.globalData.userInfo,
 
     orderItems: [{
         typeId: 0,
@@ -83,18 +82,15 @@ Page({
         wx.showLoading({
           title: '上传中...',
         })
-        var serverUrl = app.serverUrl;
-        // fixme 修改原有的全局对象为本地缓存
-        var userInfo = app.getGlobalUserInfo();
+        var serverUrl = app.globalData.serverUrl;
+        var userInfo = app.globalData.userInfo;
 
         wx.uploadFile({
-          url: serverUrl + '/user/uploadAvatar?userId=' + userInfo.id,  //app.userInfo.id,
+          url: serverUrl + '/user/uploadAvatar?userId=' + userInfo.id,
           filePath: tempFilePaths[0],
           name: 'file',
           header: {
-            'content-type': 'application/json', // 默认值
-            'headerUserId': userInfo.id,
-            'headerUserToken': userInfo.userToken
+            'content-type': 'application/json'
           },
           success: function (res) {
             var data = JSON.parse(res.data);
@@ -108,27 +104,9 @@ Page({
 
               var imageUrl = data.data;
               me.setData({
-                faceUrl: serverUrl + imageUrl
+                avatar: serverUrl + imageUrl
               });
-
-            } else if (data.status == 500) {
-              wx.showToast({
-                title: data.msg
-              });
-            } else if (res.data.status == 502) {
-              wx.showToast({
-                title: res.data.msg,
-                duration: 2000,
-                icon: "none",
-                success: function () {
-                  wx.redirectTo({
-                    url: '../mine/mine',
-                  })
-                }
-              });
-
             }
-
           }
         })
       }
@@ -138,6 +116,6 @@ Page({
   onLoad: function (params) {
     this.setData({
       userInfo: app.globalData.userInfo
-    })
+    });
   }
 })

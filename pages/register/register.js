@@ -42,7 +42,8 @@ Page({
         data: {
           username: username,
           password: password,
-          nickname: nickname
+          nickname: nickname,
+          avatar: "../static/images/mine/tou.png"
         },
         header: {
           'content-type': 'application/json'
