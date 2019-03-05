@@ -1,7 +1,6 @@
-// pages/channel/new/new.js
-// pages/phone/phone.js
+// pages/channel/computer/computer.js
 import showDetail from "../../../modules/showDetail";
-const app = getApp();
+const app=getApp();
 
 Page({
 
@@ -9,16 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods_list: null
+    goods_list:[]
   },
-  // showDetail(e){
-  //   console.log(e.currentTarget.dataset.pid);
-  // },
   showDetail,
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     var serverUrl = app.globalData.serverUrl;
     wx.showLoading({
@@ -26,17 +22,19 @@ Page({
     });
     // 调用后端
     wx.request({
-      url: serverUrl + '/product/getProducts?categoryName=New',
+      url: serverUrl + '/product/getProducts?categoryName=Mac',
       method: "POST",
       header: {
         'content-type': 'application/json'
       },
-      success: function(res) {
+      success: function (res) {
         wx.hideLoading();
-        var products = res.data.data;
-        console.log(products);
+        console.log(res.data);
+        var products = res.data;
         if (res.data.status == 200) {
-
+          that.setData({
+            goods_list: products
+          });
         } else {
           // 失败弹出框
           wx.showToast({

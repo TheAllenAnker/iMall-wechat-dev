@@ -9,18 +9,15 @@
   display: flex;
   justify-content: center;
   height: 100rpx;
-  background: #ff6700;
+  background:whitesmoke;
 }
 .searchBar .searBar-box{
   display: inline-block;
-  width: 95%;
-  height: 60rpx;
-  margin-top: 26rpx;
+  width: 98%;
+  height: 70rpx;
+  margin-top: 10rpx;
   border-radius: 40rpx;
-  background: #fff;
-}
-.searBar-box.tap{
-  background: rgba(255,247,231,.9);
+  background:white;
 }
 .search-plac{
   text-align: center;

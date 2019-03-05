@@ -1,0 +1,101 @@
+page{
+
+  display: block;  
+  min-height: 100%;  
+  background-color:#f6f6f6;  
+  font-size: 30rpx;
+  color:#353535;
+}
+.empty-addre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.empty-addre .addre-icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 200rpx;
+    height: 200rpx;
+    margin-top: 200rpx;
+    background: #d6d6d6;
+}
+.addre-icon image{
+    width: 200rpx;
+    height: 200rpx;
+}
+.prompt{
+  font-size:40rpx;
+}
+.temp{
+  margin-top:10rpx;
+}
+.addre-box{
+    width: 100%;
+    margin-top: 12rpx;
+    background: #fff;
+}
+.addre-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.addre-item{
+    height: 150rpx;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 11pt;
+    border-top: 1rpx solid #dcdcdc;
+}
+   .addre-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+   }
+   
+.addre-item icon{
+    margin-left: 10rpx;
+}
+.addre-item text{
+    display: inline-block;
+    margin: 10rpx;
+}
+
+.modify image{
+  height: 50rpx;
+  width: 50rpx;
+}
+.add{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  position: fixed;
+  float: left;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height:80rpx;
+  border-top:1rpx solid #e0e0e0;
+}
+
+.add text{
+  text-align: center;
+  margin: 10rpx;
+}
+.left{
+  width:50rpx;
+  float:left;
+  margin-top:1rpx;
+  margin-left:10rpx;
+
+}

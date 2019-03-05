@@ -49,7 +49,7 @@ Page({
   toAddress: function() {
     console.log('toAddress')
     wx.navigateTo({
-      url: '../Address/Address',
+      url: '../address/addressList/addressList',
     })
   },
   // 跳转到vip中心

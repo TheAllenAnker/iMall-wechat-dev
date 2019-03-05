@@ -1,66 +1,52 @@
 // pages/channel/other/other.js
+import showDetail from "../../../modules/showDetail";
+const app = getApp();
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
-
+    goods_list: []
   },
-
+  showDetail,
+  /**
+   * 生命周期函数--监听页面加载
+   */
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+    var that = this;
+    var serverUrl = app.globalData.serverUrl;
+    wx.showLoading({
+      title: '请等待...',
+    });
+    // 调用后端
+    wx.request({
+      url: serverUrl + '/product/getProducts?categoryName=Other',
+      method: "POST",
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideLoading();
+        console.log(res.data);
+        var products = res.data;
+        if (res.data.status == 200) {
+          that.setData({
+            goods_list: products
+          });
+        } else {
+          // 失败弹出框
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      }
+    })
   }
 })

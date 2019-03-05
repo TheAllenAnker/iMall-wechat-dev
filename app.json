@@ -5,13 +5,16 @@
     "pages/cart/cart",
     "pages/mine/mine",
     "pages/detail/detail",
-    "pages/channel/phone/phone",
-    "pages/channel/tv/tv",
-    "pages/channel/computer/computer",
+    "pages/channel/iPhone/iPhone",
+    "pages/channel/iPad/iPad",
+    "pages/channel/Mac/mac",
     "pages/login/login",
     "pages/register/register",
     "pages/channel/new/new",
-    "pages/channel/other/other"
+    "pages/channel/other/other",
+    "pages/address/addressList/addressList",
+    "pages/address/modifyAddress/modifyAddress",
+    "pages/address/newAddress/newAddress"
   ],
   "window": {
     "backgroundTextStyle": "light",

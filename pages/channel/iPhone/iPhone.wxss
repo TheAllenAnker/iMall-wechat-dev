@@ -1,4 +1,4 @@
-/* pages/channel/other/other.wxss */
+/* pages/phone/phone.wxss */
 @import "../../../templates/goods_list/goods_list.wxss";
 
 .container {

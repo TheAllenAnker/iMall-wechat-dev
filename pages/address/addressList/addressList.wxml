@@ -1,0 +1,32 @@
+<scoll-view scoll-y="true">
+<view wx:if="{{addre_list==''}}">
+    <view class="empty-addre">
+        <view class="addre-icon">
+            <image src="../../assets/icons/addre_empty.jpg" mode="aspectFill" />
+        </view>
+        <view class="temp"></view>
+        <view class="prompt">地址空空如也</view>
+    </view>
+</view>
+<view wx:else>
+<view class="addre-box">
+        <view class="addre-list" wx:for="{{addre_list}}" wx:key="{{index}}">
+            <view class="addre-item" data-index="{{index}}">
+                <view class="addre-content">
+                    <icon type="{{item.selected?'success':'circle'}}" class="" color="#ff6700" size="20" bindtap="selectList" data-index="{{index}}"/>
+                    <text class="addre">{{item.name}}，{{item.tel}}\n地址：{{item.addre}}</text>
+                    <view class = "modify" bindtap="toModifyAddre">
+                    <image src = "../../assets/image/modify.png" mode = "widthFix" bindtap = "delete"/>
+                    </view>
+                </view>
+              </view>
+              </view>
+          </view>
+</view>
+</scoll-view>
+<view class = "add" bindtap = "addAddre">
+	<image  class = "left"src = "../../assets/image/6.png"
+    mode = "widthFix" />
+    <text class = "text">新增个人地址</text>
+</view>
+

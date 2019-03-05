@@ -1,4 +1,3 @@
-// pages/channel/new/new.js
 // pages/phone/phone.js
 import showDetail from "../../../modules/showDetail";
 const app = getApp();
@@ -9,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods_list: null
+    goods_list: []
   },
   // showDetail(e){
   //   console.log(e.currentTarget.dataset.pid);
@@ -26,17 +25,19 @@ Page({
     });
     // 调用后端
     wx.request({
-      url: serverUrl + '/product/getProducts?categoryName=New',
+      url: serverUrl + '/product/getProducts?categoryName=iPhone',
       method: "POST",
       header: {
         'content-type': 'application/json'
       },
-      success: function(res) {
+      success: function (res) {
         wx.hideLoading();
-        var products = res.data.data;
-        console.log(products);
+        console.log(res.data);
+        var products = res.data;
         if (res.data.status == 200) {
-
+          that.setData({
+            goods_list: products
+          });
         } else {
           // 失败弹出框
           wx.showToast({

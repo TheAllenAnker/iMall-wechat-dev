@@ -9,6 +9,7 @@ App({
   
   globalData: {
     userInfo: null,
-    serverUrl: "http://192.168.137.196:8080/iMall"
+    serverUrl: "http://192.168.137.196:8080/iMall",
+    new_goods_list: null
   }
 })
