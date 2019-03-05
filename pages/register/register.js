@@ -22,8 +22,7 @@ Page({
     var formObject = e.detail.value;
     var username = formObject.username;
     var password = formObject.password;
-    var email = formObject.email;
-    var phone = formObject.phone;
+    var nickname = formObject.nickname;
     // 简单验证
     if (username.length == 0 || password.length == 0) {
       wx.showToast({
@@ -43,24 +42,22 @@ Page({
         data: {
           username: username,
           password: password,
-          email: email,
-          phone: phone
+          nickname: nickname
         },
         header: {
           'content-type': 'application/json'
         },
         success: function(res) {
-          console.log(res.data);
+          console.log(res);
+          app.globalData.userInfo = res.data.data;
           wx.hideLoading();
-          if (res.data.status == 200) {
-            var userInfo = res.data.data;
-            var avatar = "../static/images/mine/tou.png";
-            if (userInfo.avatar != null && userInfo.avatar != '' && userInfo.avatar != undefined) {
-              avatar = serverUrl + userInfo.avatar;
-            }
-          }
           wx.switchTab({
-            url: '../mine/mine'
+            url: '../mine/mine',
+            success: function(e) {
+              var page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+              page.onLoad();
+            }
           });
         }
       })

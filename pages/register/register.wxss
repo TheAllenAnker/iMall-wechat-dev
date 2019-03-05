@@ -51,7 +51,7 @@ page {
     height: 20px;
 }*/
 
-.loginLabel {
+.usernameLabel, .passwordLabel, .passwordConfirmLabel, .nicknameLabel{
     margin: 15px 0px 3px 3px;
     color: gray;
     font-size: 15px;

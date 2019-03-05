@@ -136,12 +136,8 @@ Page({
   },
 
   onLoad: function (params) {
-    // var me = this;
-    // // var user = app.userInfo;
-    // // fixme 修改原有的全局对象为本地缓存
-    // var user = app.globalData.userInfo;
-    // if(user != null) {
-
-    // }
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   }
 })
