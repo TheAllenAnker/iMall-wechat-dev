@@ -8,7 +8,7 @@ Page({
    * Page initial data
    */
   data: {
-    goods_list: []
+    product_list: []
   },
   showDetail,
   /**
@@ -18,35 +18,12 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    var that = this;
-    var serverUrl = app.globalData.serverUrl;
-    wx.showLoading({
-      title: '请等待...',
+    
+  },
+
+  onReady: function() {
+    this.setData({
+      product_list: app.globalData.other_list
     });
-    // 调用后端
-    wx.request({
-      url: serverUrl + '/product/getProducts?categoryName=Other',
-      method: "POST",
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideLoading();
-        console.log(res.data);
-        var products = res.data;
-        if (res.data.status == 200) {
-          that.setData({
-            goods_list: products
-          });
-        } else {
-          // 失败弹出框
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 3000
-          })
-        }
-      }
-    })
   }
 })

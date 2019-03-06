@@ -25,7 +25,6 @@ Page({
           sectionList=index_block.map((section)=>{
       return section.section;
     })
-    console.log(sectionList);
     this.setData({
       index_slides,
       nav_data,

@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods_list: []
+    product_list: []
   },
   // showDetail(e){
   //   console.log(e.currentTarget.dataset.pid);
@@ -18,35 +18,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this;
-    var serverUrl = app.globalData.serverUrl;
-    wx.showLoading({
-      title: '请等待...',
+    
+  },
+
+  onReady: function() {
+    this.setData({
+      product_list: app.globalData.iphone_list
     });
-    // 调用后端
-    wx.request({
-      url: serverUrl + '/product/getProducts?categoryName=iPhone',
-      method: "POST",
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideLoading();
-        console.log(res.data);
-        var products = res.data;
-        if (res.data.status == 200) {
-          that.setData({
-            goods_list: products
-          });
-        } else {
-          // 失败弹出框
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 3000
-          })
-        }
-      }
-    })
   }
 })
