@@ -1,0 +1,85 @@
+/* pages/goods/show.wxss */
+
+.goods-swiper .slide-image {
+  width: 100%;
+  height: 792rpx;
+  display: block;
+}
+
+.weui-cells:nth-child(1) {
+  margin-top: 0;
+}
+
+.weui-cell__bd view {
+  margin-top: 10rpx;
+}
+
+.weui-cell__bd .title {
+  margin-top: 0;
+  font-size: 12pt;
+}
+
+.weui-cell__bd .desp {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 9pt;
+  color: #666;
+}
+
+.weui-cell__bd .meta {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #ff4a00;
+}
+
+.user-operation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  z-index: 2;
+  border-top: 1px solid #efefef;
+}
+
+.cart {
+  flex: 1;
+  height: 100rpx;
+  background: #fff;
+}
+
+.cart image {
+  width: 60rpx;
+  height: 60rpx;
+  position: relative;
+  top: 18rpx;
+  left:40rpx;
+
+}
+.cart .badge{
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 60rpx;
+  font-size: 11px;
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  background: #ff4a00;
+  border-radius: 50%;
+}
+.add-cart{
+  flex: 3;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fff;
+  background: #ff6700;
+}

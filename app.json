@@ -14,7 +14,8 @@
     "pages/channel/other/other",
     "pages/address/addressList/addressList",
     "pages/address/modifyAddress/modifyAddress",
-    "pages/address/newAddress/newAddress"
+    "pages/address/newAddress/newAddress",
+    "pages/productDetail/productDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

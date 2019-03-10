@@ -3,7 +3,7 @@
         <block wx:for="{{product_list}}" wx:key="index" wx:for-item="product">
             <view class="goods-item">
                 <image class="goods-img on-sale" src="{{product.cover}}" lazy-load='true'
-                    mode="aspectFill" bindtap="showDetail"/>
+                    mode="aspectFill" bindtap="showDetail" data-pid="{{product.id}}"/>
                 <text class="title">{{product.productName}}</text>
                 <text class="desp">{{product.description}}</text>
                 <text class="meta">{{product.price}}</text>

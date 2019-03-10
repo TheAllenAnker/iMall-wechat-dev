@@ -56,8 +56,7 @@ export default {
   index_block: [{
     id: 5,
     img_url: "http://pnu0mosmq.bkt.clouddn.com/imall/image/products/index/section/Macbook%20Air%20ads.jpg",
-    section: [
-      {
+    section: [{
         id: 4,
         goods_cover: "http://pnu0mosmq.bkt.clouddn.com/iMall/image/products/index/section/section2.jpg",
         header: "苹果iPhone XR",
@@ -192,5 +191,63 @@ export default {
         on_sale: true
       }
     ]
-  }]
+  }],
+
+  discovery: [{
+      header: 'Introducing iPhone XS and iPhone XR',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/Introducing%20iPhone%20XS%20and%20iPhone%20XR%20%E2%80%94%20Apple.mp4',
+      image: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/Introducing%20iPhone%20XS%20and%20iPhone%20XR%20%E2%80%94%20Apple.png',
+      duration_raw: 75,
+    },
+    {
+      header: 'Introducing the new iPad Pro',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/Introducing%20the%20new%20iPad%20Pro%20%E2%80%94%20Apple.mp4',
+      image: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/Introducing%20the%20new%20iPad%20Pro%20%E2%80%94%20Apple.png',
+      duration_raw: 63,
+    },
+    {
+      header: 'Introducing the new MacBook Air',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/Introducing%20the%20new%20MacBook%20Air%20%E2%80%94%20Apple.mp4',
+      image: "http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/Introducing%20the%20new%20MacBook%20Air%20%E2%80%94%20Apple.png",
+      duration_raw: 74
+    },
+    {
+      header: 'Introducing Apple Watch Series 4',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/Introducing%20Apple%20Watch%20Series%204%20%E2%80%94%20Apple.mp4',
+      image: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/Introducing%20Apple%20Watch%20Series%204%20%E2%80%94%20Apple.png',
+      duration_raw: 119,
+    },
+    {
+      header: 'September Keynote 2018 — Opening Film',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/September%20Keynote%202018%20%E2%80%94%20Opening%20Film%20%E2%80%94%20Apple.mp4',
+      image: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/September%20Keynote%202018%20%E2%80%94%20Opening%20Film%20%E2%80%94%20Apple.png',
+      duration_raw: 168,
+    },
+    {
+      header: 'Holiday — How I Create Stories with Color on MacBook Pro -- Apple',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/Holiday%20%E2%80%94%20How%20I%20Create%20Stories%20with%20Color%20on%20MacBook%20Pro%20%E2%80%94%20Apple.mp4',
+      image: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/Holiday%20%E2%80%94%20How%20I%20Create%20Stories%20with%20Color%20on%20MacBook%20Pro%20%E2%80%94%20Apple.png',
+      duration_raw: 258,
+    },
+    {
+      header: 'iPad Pro -- Change',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/videos/iPad%20Pro%20%E2%80%94%20Change%20%E2%80%94%20Apple.mp4',
+      image: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/iPad%20Pro%20%E2%80%94%20Change%20%E2%80%94%20Apple.png',
+      duration_raw: 258,
+    },
+    {
+      header: 'Apple - Perspective',
+      description: "",
+      video: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/videos/Apple%20-%20Perspective.mp4',
+      image: 'http://pnu0mosmq.bkt.clouddn.com/imall/discovery/images/Apple%20-%20Perspective.png',
+      duration_raw: 258,
+    }
+  ]
 }

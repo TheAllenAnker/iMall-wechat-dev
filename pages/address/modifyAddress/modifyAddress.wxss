@@ -2,7 +2,6 @@ page {
   display: block;  
   min-height: 100%;  
   background-color:#f6f6f6;
-  font-family: "微软雅黑";
   font-size: 30rpx;
   color:#353535;
   position: relative;
@@ -20,34 +19,22 @@ page {
   border-bottom:1rpx solid #eee;
 }
 
-input placeholder{
-  color:red;
-}
-
 button{
 
-  width:92%;
+  width:75%;
   margin-top:30rpx;
-
-}
-
-.remind{
-
-  padding-top: 6rpx;
-  color:#e64340;
-  font-size:20rpx;
-
+  font-size: 36rpx;
 }
 
 .save{
-  background-color: #FFC800;
+  background-color: rgb(255,117,0);
   color:#fff;
 }
 
 .right{
 
   padding-left: 30rpx;
-  width:75%;
+  width:60%;
   display:flex;
 
 }

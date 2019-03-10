@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cart_list: [],
+    cart_list: null,
     totalPrice: 0,
     selectAllStatus: false,
     startX: 0, //开始坐标
@@ -69,7 +69,7 @@ Page({
     this.getTotalPrice();
   },
 
-  touchstart: function (e) {
+  touchstart: function(e) {
     this.data.cart_list.map(item => {
       if (item.isTouchMove) {
         item.isTouchMove = false;
@@ -97,7 +97,7 @@ Page({
         X: touchMoveX,
         Y: touchMoveY
       });
-    this.data.cart_list.forEach(function (v, i) {
+    this.data.cart_list.forEach(function(v, i) {
       v.isTouchMove = false
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -120,7 +120,7 @@ Page({
     return 360 * Math.atan(Y / X) / (2 * Math.PI);
   },
   delCartItem(e) {
-    const index=e.currentTarget.dataset.index;
+    const index = e.currentTarget.dataset.index;
     console.log(index);
     this.data.cart_list.splice(index, 1);
     wx.clearStorageSync("select_num");
@@ -131,78 +131,50 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    const attr_item = wx.getStorageSync('attr_item');
-    console.log(attr_item)
-    // return
-    let cart_list = this.data.cart_list;
-    // arr = [attr_item, ...arr]
-    cart_list = [...attr_item];
-    // arr.push(temp);
-    console.log(cart_list);
-    const select_num = cart_list.map(item => {
-      return item.select_num;
-    })
-    // console.log(select_num);
-    let goods_sum = 0;
-    for (let i = 0, len = select_num.length; i < len; i++) {
-      goods_sum += select_num[i];
+  onLoad: function(options) {
+    var that = this;
+    var serverUrl = app.globalData.serverUrl;
+    var userInfo = app.globalData.userInfo;
+    // request for New list
+    if (userInfo != null) {
+      console.log(userInfo.id);
+      wx.showLoading({
+        title: '请等待...',
+      });
+      wx.request({
+        url: serverUrl + '/cart/getCartItems?userId=' + userInfo.id,
+        method: "POST",
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function(res) {
+          var data = res.data;
+          console.log(res);
+          var products = JSON.parse(data.data);
+          console.log(product);
+          if (data.status == 200) {
+            that.setData({
+              cart_list: products
+            });
+          } else {
+            // 失败弹出框
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 3000
+            })
+          }
+        },
+        fail: function(res) {
+          wx.showToast({
+            title: '请求出错',
+            icon: 'failure',
+            duration: 3000
+          });
+          wx.hideLoading();
+        }
+      })
+      wx.hideLoading();
     }
-    wx.setStorageSync('goods_sum', goods_sum);
-    console.log(goods_sum);
-    // console.log(temp)
-    this.setData({
-      cart_list
-    });
-    console.log(this.data.cart_list);
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

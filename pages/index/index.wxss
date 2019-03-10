@@ -5,6 +5,11 @@
 .section{
   width: 100%;
 }
+
+.search-icon {
+  margin-top: -10rpx;
+}
+
 .searchBar{
   display: flex;
   justify-content: center;
@@ -22,7 +27,7 @@
 .search-plac{
   text-align: center;
   font-size: 11pt;
-  margin-top: 4rpx;
+  margin-top: 6rpx;
 }
 .searBar-box .search-icon{
   position: absolute;

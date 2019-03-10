@@ -1,44 +1,42 @@
 <!--pages/Mypage/Adress/Adress.wxml-->
- 
 
-  <view class="userinfo">
-    <image class="userinfo-avatar" src="../images/tou.png" background-size="cover"></image>
-    <text class="userinfo-nickname">{{username}}</text>
+<form bindsubmit="formSubmit" report-submit="true">
+<view class = "info">
+<!-- 姓名部分 -->
+<view class = "item">
+<text>收货人</text>
+<view class = "right">
+<input class="name" type="text" name = "name" value = "{{name}}" placeholder="收货人姓名"/>
+</view>
+</view>
 
-  </view>
+<!-- 电话部分 -->
+<view class = "item">
+<text>联系电话</text>
+<view class = "right">
+<input name="tel" type="number" value="{{tel}}"  placeholder="电话号码"/>
+</view>
+</view>
 
-  <!-- 收货人-->
-  <view>
-  	 <view class='title'>
-  	 	<view class="usermassege">
-  	 		<view class="begin">收货人</view>
-  	 		<label class="loginLabel">姓名</label>
-            <input name="username" value='' class="inputText" placeholder="真实姓名" />
-            <view class="line"></view>
-            <label class="phoneLabel">电话</label>
-            <input name="phone" value='' class="inputText" placeholder="电话号码" />
+<!-- 收货地址部分 -->
+<view class = "item">
+<text>地区信息</text>
+<view class = "right">
+<input name="addre" type="text" value="{{addre}}"  placeholder=" 省/市/区"/>
+</view>
+</view>
 
-  	 	</view>
-  	 </view>
-  </view>
+<!-- 详细地址部分 -->
+<view class = "item">
+<text>详细地址</text>
+<view class = "right">
+<input name="door" type="text" value="{{door}}"  placeholder="街道门牌 楼层房间号等"/>
+</view>
+</view>
+</view>
 
-    <!-- 收货地址-->
-  <view>
-  	 <view class='title'>
-  	 	<view class="usermassege">
-  	 		<view class="begin">收货地址</view>
-  	 		<label class="loginLabel">地区信息</label>
-            <input name="username" value='' class="inputText" placeholder=" 省/市/区" />
-            <view class="line"></view>
-            <label class="phoneLabel">详细地址</label>
-            <input name="phone" value='' class="inputText" placeholder="街道门牌 楼层房间号等" />
-  	 	</view>
-  	 </view>
-  </view>
-  <!-- 提交 <-->
-  	<view class="submit">
-       <button class="button" bindtap="submit" form-type='submit'>保存并使用</button>
-  	</view>
+<button class = "save" formType="submit" >保存并使用</button>
+</form>
  
 
                

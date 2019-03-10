@@ -66,7 +66,28 @@ Page({
   toLogin: function() {
     wx.navigateTo({
       url: '../login/login',
-    })
+    });
+    // wx.login({
+    //   success(res) {
+    //     if (res.code) {
+    //       //把获取到的code通过一个request的请求发给java服务器
+    //       wx.request({
+    //         url: '',
+    //         data: {
+    //           code: res.code
+    //         },
+    //         method: 'POST',
+    //         dataType: 'json',
+    //         success: function(res) {
+    //           //请求成功的处理
+    //         }
+    //       });
+    //     }
+    //   },
+    //   fail: function() {
+    //     console.log("发送code失败：", res.data);
+    //   }
+    // });
   },
 
   changeAvatar: function() {
@@ -75,7 +96,7 @@ Page({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album'],
-      success: function (res) {
+      success: function(res) {
         var tempFilePaths = res.tempFilePaths;
         console.log(tempFilePaths);
 
@@ -90,9 +111,9 @@ Page({
           filePath: tempFilePaths[0],
           name: 'file',
           header: {
-            'content-type': 'application/json'
+            'content-type': 'multipart/form-data'
           },
-          success: function (res) {
+          success: function(res) {
             var data = JSON.parse(res.data);
             console.log(data);
             wx.hideLoading();
@@ -107,13 +128,17 @@ Page({
                 avatar: serverUrl + imageUrl
               });
             }
+          },
+
+          fail: function(res) {
+            wx.hideLoading();
           }
         })
       }
     })
   },
 
-  onLoad: function (params) {
+  onLoad: function(params) {
     this.setData({
       userInfo: app.globalData.userInfo
     });

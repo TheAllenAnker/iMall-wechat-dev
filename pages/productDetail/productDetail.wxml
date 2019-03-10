@@ -1,0 +1,23 @@
+<!--pages/goods/show.wxml-->
+<view class="section goods-show">
+  <view class="goods-swiper">
+    <image src="{{product.cover}}" mode="widthFix" class="slide-image" data-id="{{product.id}}" />
+  </view>
+  <view class="goods-desp">
+    <view class="weui-cells">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="title">{{product.productName}}</view>
+          <view class="desp">{{product.description}}</view>
+          <view class="meta">{{product.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="user-operation">
+    <view class="cart" bindtap="goCart">
+      <image src="../../assets/icons/cart.png" />
+    </view>
+    <view class="add-cart" bindtap="addToCart" data-id="{{product.id}}">加入购物车</view>
+  </view>
+</view>
