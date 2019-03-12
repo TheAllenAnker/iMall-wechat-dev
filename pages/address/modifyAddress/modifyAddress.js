@@ -1,5 +1,6 @@
 // pages/modifyAddress/modifyAddress.js
 var app = getApp();
+var addrId = null;
 
 Page({
 
@@ -7,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addrId: null,
     addressVO: null
   },
 
@@ -27,10 +27,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const addrId = options.addrId;
-    this.setData({
-      addrId: addrId
-    });
+    addrId = options.addrId;
     console.log(addrId);
     var that = this;
     var serverUrl = app.globalData.serverUrl;
@@ -64,6 +61,42 @@ Page({
           icon: 'none',
           duration: 3000
         })
+      }
+    })
+  },
+
+  formSubmit: function(options) {
+    console.log(options);
+    var form = options.detail.value;
+    var username = form.name;
+    var phone = form.phone;
+    var addressId = addrId;
+    var address = form.address;
+    var serverUrl = app.globalData.serverUrl;
+    wx.request({
+      url: serverUrl + '/address/updateAddressInfo',
+      method: "POST",
+      data: {
+        id: addressId,
+        address: address
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.data.status == 200) {
+          wx.redirectTo({
+            url: '../addressList/addressList',
+          })
+        } else {
+          // 失败弹出框
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
       }
     })
   }

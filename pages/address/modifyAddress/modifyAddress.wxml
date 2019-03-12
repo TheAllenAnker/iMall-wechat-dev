@@ -28,7 +28,7 @@
 <view class = "item">
 <text>详细地址</text>
 <view class = "right">
-<input name="door" type="text" value="{{addressVO.address}}"  focus="{{focus}}"/>
+<input name="address" type="text" value="{{addressVO.address}}"  focus="{{focus}}"/>
 </view>
 </view>
 </view>
