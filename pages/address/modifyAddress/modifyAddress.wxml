@@ -4,7 +4,7 @@
 <view class = "item">
 <text>收货人</text>
 <view class = "right">
-<input type="text" name = "name" value = "{{name}}" focus="{{focus}}"/>
+<input type="text" name = "name" value = "{{addressVO.username}}" focus="{{focus}}"/>
 </view>
 </view>
 
@@ -12,7 +12,7 @@
 <view class = "item">
 <text>联系电话</text>
 <view class = "right">
-<input name="tel" type="number" value="{{tel}}"  focus="{{focus}}"/>
+<input name="phone" type="number" value="{{addressVO.phone}}"  focus="{{focus}}"/>
 </view>
 </view>
 
@@ -20,7 +20,7 @@
 <view class = "item">
 <text>地区信息</text>
 <view class = "right">
-<input name="addre" type="text" value="{{addre}}"  focus="{{focus}}"/>
+<input name="addre" type="text" value="暂不支持:)"  focus="{{focus}}"/>
 </view>
 </view>
 
@@ -28,7 +28,7 @@
 <view class = "item">
 <text>详细地址</text>
 <view class = "right">
-<input name="door" type="text" value="{{door}}"  focus="{{focus}}"/>
+<input name="door" type="text" value="{{addressVO.address}}"  focus="{{focus}}"/>
 </view>
 </view>
 </view>

@@ -1,4 +1,5 @@
 const app = getApp()
+var lastPage = null;
 
 Page({
   data: {},
@@ -7,6 +8,12 @@ Page({
     wx.navigateTo({
       url: '../register/register'
     })
+  },
+
+  onLoad: function(options) {
+    console.log(options);
+    var passedLastPage = options.lagePage;
+    lastPage = passedLastPage;
   },
 
   doLogin: function(e) {
@@ -48,7 +55,7 @@ Page({
             });
             app.globalData.userInfo = res.data.data;
             wx.switchTab({
-              url: '../mine/mine',
+              url: '../mine/mine?lastPage=' + lastPage,
               success: function(e) {
                 var page = getCurrentPages().pop();
                 if (page == undefined || page == null) return;

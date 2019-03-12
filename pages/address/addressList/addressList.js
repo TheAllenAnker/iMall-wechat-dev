@@ -1,57 +1,78 @@
-//var li=[];
 const app = getApp();
+const util = require('../../../utils/util.js');
+
 Page({
 
   data: {
-    
-    selectAllStatus: false,
-    addre_list:[
-      {
-        name:"张三",
-        tel:"1008611",
-        addre:"山河县王家坝村4号"
-      }
-    ],
-    
+    addre_list: null
   },
 
-  addAddre: function (e) {
+  addAddre: function(e) {
     wx.navigateTo({
       url: '../newAddress/newAddress'
-    })
-
-  },
-  selectList(e) {
-    let selectAllStatus = this.data.selectAllStatus;
-    const index = e.currentTarget.dataset.index;
-    let addre_list = this.data.addre_list;
-    // console.log(cart_list[index].selected);
-    const selected = addre_list[index].selected;
-    addre_list[index].selected = !selected;
-    console.log(selected);
-    //购物车列表里的条目只要有一个取消，全选就取消
-    const symbol = addre_list.some(addressList => {
-      return addressList.selected === false;
-    });
-    if (symbol) {
-      this.data.selectAllStatus = false;
-    } else {
-      this.data.selectAllStatus = true;
-    }
-
-    this.setData({
-      addre_list,
-      selectAllStatus: this.data.selectAllStatus
     });
   },
 
-  toModifyAddre: function (e) {
+  modifyAddress: function(e) {
+    const addrId = e.currentTarget.dataset.addrid;
+    console.log(e);
     wx.navigateTo({
-      url: '../modifyAddress/modifyAddress'
+      url: '../modifyAddress/modifyAddress?addrId=' + addrId
     })
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
+    var that = this;
+    if (app.globalData.userInfo != null) {
+      wx.showLoading({
+        title: '加载中...'
+      });
+      var serverUrl = app.globalData.serverUrl;
+      var userInfo = app.globalData.userInfo;
+      wx.request({
+        url: serverUrl + '/address/getAddressesByUserId?userId=' + userInfo.id,
+        method: "POST",
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function(res) {
+          var addresses = JSON.parse(res.data.data);
+          console.log(addresses);
+          if (res.data.status == 200) {
+            that.setData({
+              addre_list: addresses
+            })
+          } else {
+            // 失败弹出框
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 3000
+            })
+          }
+        },
+        fail: function(res) {
+          wx.showToast({
+            title: '请求出错',
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      })
+      wx.hideLoading();
+    } else {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+        duration: 3000
+      });
+      var lastPage = util.getCurrentPageUrl(that);
+      console.log(lastPage);
+      setTimeout(function() {
+        wx.navigateTo({
+          url: '../../login/login?lastPage=' + lastPage,
+        });
+      }, 3000)
+    }
   }
-
 })

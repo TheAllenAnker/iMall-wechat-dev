@@ -1,6 +1,7 @@
 // pages/Mypage/mypage.js
 const qiniuUploader = require("../../utils/qiniuUploader");
 const app = getApp();
+var lastPage = null;
 
 Page({
   /**
@@ -86,7 +87,7 @@ Page({
     
   },
 
-  onLoad: function(params) {
+  onLoad: function(options) {
     this.setData({
       userInfo: app.globalData.userInfo
     });

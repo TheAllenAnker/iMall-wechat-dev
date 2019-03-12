@@ -1,32 +1,29 @@
 <scoll-view scoll-y="true">
-<view wx:if="{{addre_list==''}}">
+  <view wx:if="{{addre_list == null}}">
     <view class="empty-addre">
-        <view class="addre-icon">
-            <image src="../../assets/icons/addre_empty.jpg" mode="aspectFill" />
-        </view>
-        <view class="temp"></view>
-        <view class="prompt">地址空空如也</view>
+      <view class="addre-icon">
+        <image src="../../../assets/icons/addre_empty.jpg" mode="aspectFill" />
+      </view>
+      <view class="temp"></view>
+      <view class="prompt">地址空空如也</view>
     </view>
-</view>
-<view wx:else>
-<view class="addre-box">
-        <view class="addre-list" wx:for="{{addre_list}}" wx:key="{{index}}">
-            <view class="addre-item" data-index="{{index}}">
-                <view class="addre-content">
-                    <icon type="{{item.selected?'success':'circle'}}" class="" color="#ff6700" size="20" bindtap="selectList" data-index="{{index}}"/>
-                    <text class="addre">{{item.name}}，{{item.tel}}\n地址：{{item.addre}}</text>
-                    <view class = "modify" bindtap="toModifyAddre">
-                    <image src = "../../../assets/icons/modify.png" mode = "widthFix"/>
-                    </view>
-                </view>
-              </view>
-              </view>
+  </view>
+  <view wx:else>
+    <view class="addre-box">
+      <view class="addre-list" wx:for="{{addre_list}}" wx:for-item="item" wx:key="{{index}}">
+        <view class="addre-item" data-index="{{index}}">
+          <view class="addre-content">
+            <text class="addre">{{item.username}}，{{item.phone}}\n地址：{{item.address}}</text>
+            <view class="modify" bindtap="modifyAddress" data-addrId='{{item.addressId}}'>
+              <image src="../../../assets/icons/modify.png" mode="widthFix" />
+            </view>
           </view>
-</view>
+        </view>
+      </view>
+    </view>
+  </view>
 </scoll-view>
-<view class = "add" bindtap = "addAddre">
-	<image  class = "left"src = "../../../assets/icons/add_address.png"
-    mode = "widthFix" />
-    <text class = "text">新增个人地址</text>
+<view class="add" bindtap="addAddre">
+  <image class="left" src="../../../assets/icons/add_address.png" mode="widthFix" />
+  <text class="text">新增个人地址</text>
 </view>
-

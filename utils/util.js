@@ -13,6 +13,11 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+
+function getCurrentPageUrl(pageObj) {
+  return pageObj.route;
+}
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  getCurrentPageUrl: getCurrentPageUrl
 }
