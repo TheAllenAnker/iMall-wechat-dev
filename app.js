@@ -5,7 +5,7 @@ App({
   onLaunch: function () {
     Object.assign(this.globalData, mock)
     var that = this;
-    var serverUrl = "http://106.14.125.66:8080/iMall";
+    var serverUrl = this.globalData.serverUrl;
     wx.showLoading({
       title: '请等待...',
     });
@@ -124,7 +124,7 @@ App({
   
   globalData: {
     userInfo: null,
-    serverUrl: "http://192.168.137.196:8080/iMall",
+    serverUrl: "http://localhost:8080/iMall",
     new_list: [],
     iphone_list: [],
     ipad_list: [],

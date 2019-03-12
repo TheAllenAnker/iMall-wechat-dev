@@ -1,4 +1,5 @@
 // pages/Mypage/mypage.js
+const qiniuUploader = require("../../utils/qiniuUploader");
 const app = getApp();
 
 Page({
@@ -6,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatar: "../static/images/mine/tou.png",
+    avatar: null,
+    serverUrl: app.globalData.serverUrl,
 
     orderItems: [{
         typeId: 0,
@@ -67,80 +69,41 @@ Page({
     wx.navigateTo({
       url: '../login/login',
     });
-    // wx.login({
-    //   success(res) {
-    //     if (res.code) {
-    //       //把获取到的code通过一个request的请求发给java服务器
-    //       wx.request({
-    //         url: '',
-    //         data: {
-    //           code: res.code
-    //         },
-    //         method: 'POST',
-    //         dataType: 'json',
-    //         success: function(res) {
-    //           //请求成功的处理
-    //         }
-    //       });
-    //     }
-    //   },
-    //   fail: function() {
-    //     console.log("发送code失败：", res.data);
-    //   }
-    // });
+  },
+
+  initQiniu: function () {
+    var options = {
+      region: 'SCN', // 华北区
+      uptokenURL: 'http://localhost:8080/iMall/qiniu/uptoken',
+      // uptoken: 'xxxx=',
+      domain: 'http://pnu0mosmq.bkt.clouddn.com',
+      shouldUseQiniuFileName: false
+    };
+    qiniuUploader.init(options);
   },
 
   changeAvatar: function() {
-    var me = this;
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album'],
-      success: function(res) {
-        var tempFilePaths = res.tempFilePaths;
-        console.log(tempFilePaths);
-
-        wx.showLoading({
-          title: '上传中...',
-        })
-        var serverUrl = app.globalData.serverUrl;
-        var userInfo = app.globalData.userInfo;
-
-        wx.uploadFile({
-          url: serverUrl + '/user/uploadAvatar?userId=' + userInfo.id,
-          filePath: tempFilePaths[0],
-          name: 'file',
-          header: {
-            'content-type': 'multipart/form-data'
-          },
-          success: function(res) {
-            var data = JSON.parse(res.data);
-            console.log(data);
-            wx.hideLoading();
-            if (data.status == 200) {
-              wx.showToast({
-                title: '上传成功',
-                icon: "success"
-              });
-
-              var imageUrl = data.data;
-              me.setData({
-                avatar: serverUrl + imageUrl
-              });
-            }
-          },
-
-          fail: function(res) {
-            wx.hideLoading();
-          }
-        })
-      }
-    })
+    
   },
 
   onLoad: function(params) {
     this.setData({
       userInfo: app.globalData.userInfo
     });
+  },
+
+  onShow: function(options) {
+    var that = this;
+    var userInfo = app.globalData.userInfo;
+    console.log(userInfo);
+    if(userInfo != null) {
+      that.setData({
+        avatar: that.data.serverUrl + userInfo.avatar
+      });
+    } else {
+      that.setData({
+        avatar: '../static/images/mine/tou.png'
+      })
+    }
   }
 })

@@ -56,40 +56,51 @@ Page({
   },
 
   addToCart: function(e) {
-    const id = e.currentTarget.dataset.id;
-    const serverUrl = app.globalData.serverUrl;
-    var userInfo = app.globalData.userInfo;
-    wx.request({
-      url: serverUrl + '/cart/addCartItem?userId=' + userInfo.id + '&productId=' + id, 
-      method: "POST",
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        var products = JSON.parse(res.data.data);
-        console.log(products);
-        if (res.data.status == 200) {
+    if (app.globalData.userInfo != null) {
+      const id = e.currentTarget.dataset.id;
+      const serverUrl = app.globalData.serverUrl;
+      var userInfo = app.globalData.userInfo;
+      wx.request({
+        url: serverUrl + '/cart/addCartItem?userId=' + userInfo.id + '&productId=' + id,
+        method: "POST",
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function(res) {
+          var products = JSON.parse(res.data.data);
+          console.log(products);
+          if (res.data.status == 200) {
+            wx.showToast({
+              title: '已加入购物车',
+              icon: 'success',
+              duration: 3000
+            })
+          } else {
+            // 失败弹出框
+            wx.showToast({
+              title: '加入购物车失败',
+              icon: 'failure',
+              duration: 3000
+            })
+          }
+        },
+        fail: function(res) {
           wx.showToast({
-            title: '已加入购物车',
-            icon: 'success',
-            duration: 3000
-          })
-        } else {
-          // 失败弹出框
-          wx.showToast({
-            title: '加入购物车失败',
-            icon: 'failure',
+            title: '系统出错，请重试',
+            icon: 'none',
             duration: 3000
           })
         }
-      },
-      fail: function(res) {
-        wx.showToast({
-          title: '系统出错，请重试',
-          icon: 'none',
-          duration: 3000
-        })
-      }
-    })
+      })
+    } else {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+        duration: 3000
+      });
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
   }
 })

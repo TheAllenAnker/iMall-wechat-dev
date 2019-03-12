@@ -4,7 +4,7 @@
 
 <view class="userinfo">
   <block wx:if="{{userInfo != null}}">
-    <image class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover" bindtap='changeAvatar'></image>
+    <image class="userinfo-avatar" src="{{avatar}}" background-size="cover" bindtap='changeAvatar'></image>
     <text class="userinfo-nickname">{{userInfo.nickname}}</text>
   </block>
   <block wx:if="{{userInfo == null}}">

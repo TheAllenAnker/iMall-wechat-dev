@@ -10,31 +10,29 @@
 </view>
 <view wx:else>
   <view class="cart-box">
-    <view class="cart-list" wx:for="{{cart_list}}" wx:key="{{index}}" wx:for-item="profuct ">
-            <view class="cart-item {{product.isTouchMove? 'touch-move-active': ''}} " bindtouchstart="touchstart " bindtouchmove="touchmove " data-index="{{index}} ">
-                <view class="cart-content ">
-                    <icon type="{{product.selected? 'success': 'circle'}} " class=" " color="#ff6700 " size="20 " bindtap="selectList " data-index="{{index}} "
-                    />
-                    <image src="{{product.cover}} "
-                        mode="aspectFill " />
-                    <text class="item-title ">{{product.goods_name}} {{product.memory}}</text>
-                    <text class="item-num ">{{product.color}}</text>
-                    <text class="item-price ">{{product.select_num}}×</text>
-                    <text class="item-price ">{{product.price}}</text>
-                    <view class="del-cart-item " catchtap="delCartItem " data-index="{{index}} ">删除</view>
-                </view>
-            </view>
+    <view class="cart-list" wx:for="{{cart_list}}" wx:key="{{index}}" wx:for-item="cart_vo">
+      <view class="cart-item {{cart_vo.isTouchMove? 'touch-move-active': ''}} " bindtouchstart="touchstart " bindtouchmove="touchmove " data-index="{{index}} ">
+        <view class="cart-content ">
+          <icon type="{{cart_vo.selected? 'success': 'circle'}} " class=" " color="#ff6700 " size="20 " bindtap="selectList " data-index="{{index}} " />
+          <image src="{{cart_vo.product.cover}} " mode="aspectFill " />
+          <text class="item-title">{{cart_vo.product.productName}} {{cart_vo.inventory}}</text>
+          <text class="item-num">{{cart_vo.color}}</text>
+          <text class="item-price" space='emsp'>{{cart_vo.product.price}}  ×</text>
+          <text class="item-price" space='emsp'>{{cart_vo.cartItem.count}}</text>
+          <view class="del-cart-item" catchtap="delCartItem " data-index="{{index}}">删除</view>
         </view>
+      </view>
     </view>
-    <view class="user-operation ">
-        <view class="select-all ">
-            <icon wx:if="{{selectAllStatus}} " type="success " class="total-select " color="#ff6700 " bindtap="selectAll " />
-            <icon wx:else type="circle " class="total-select " color="#ff6700 " size="20 " bindtap="selectAll " />
-            <text>全选</text>
-        </view>
-        <view class="total-price ">合计：
-            <text>{{totalPrice}}元</text>
-        </view>
-        <view class="btn-primary pay " bindtap="checkOut">结算</view>
+  </view>
+  <view class="user-operation ">
+    <view class="select-all ">
+      <icon wx:if="{{selectAllStatus}}" type="success" class="total-select " color="#ff6700 " bindtap="selectAll"/>
+      <icon wx:else type="circle " class="total-select " color="#ff6700 " size="20 " bindtap="selectAll " />
+      <text>全选</text>
     </view>
+    <view class="total-price ">合计：
+      <text>{{totalPrice}}元</text>
+    </view>
+    <view class="btn-primary pay " bindtap="checkOut">结算</view>
+  </view>
 </view>

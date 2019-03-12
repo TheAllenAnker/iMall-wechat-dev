@@ -131,7 +131,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onShow: function(options) {
     var that = this;
     var serverUrl = app.globalData.serverUrl;
     var userInfo = app.globalData.userInfo;
@@ -149,12 +149,11 @@ Page({
         },
         success: function(res) {
           var data = res.data;
-          console.log(res);
-          var products = JSON.parse(data.data);
-          console.log(product);
+          var vos = JSON.parse(data.data);
+          console.log(vos);
           if (data.status == 200) {
             that.setData({
-              cart_list: products
+              cart_list: vos
             });
           } else {
             // 失败弹出框
@@ -176,5 +175,6 @@ Page({
       })
       wx.hideLoading();
     }
+    this.onLoad;
   }
 })
