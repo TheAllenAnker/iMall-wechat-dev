@@ -12,8 +12,28 @@ Page({
   },
 
   delete: function(){
-    wx.navigateTo({
-      url: '../addressList/addressList',
+    var serverUrl = app.globalData.serverUrl;
+    wx.request({
+      url: serverUrl + '/address/deleteAddressById?addressId=' + addrId,
+      method: "POST",
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.data.status == 200) {
+          wx.redirectTo({
+            url: '../addressList/addressList',
+          })
+        } else {
+          // 失败弹出框
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      }
     })
   },
 
