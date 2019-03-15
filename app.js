@@ -124,7 +124,7 @@ App({
   
   globalData: {
     userInfo: null,
-    serverUrl: "http://localhost:8080/iMall",
+    serverUrl: "http://106.14.125.66:8080/iMall",
     new_list: [],
     iphone_list: [],
     ipad_list: [],
