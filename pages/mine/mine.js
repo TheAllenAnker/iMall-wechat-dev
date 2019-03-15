@@ -152,7 +152,7 @@ function didPressChooesImage(that) {
             },
             success: function(res) {
               if (res.data.status == 200) {
-                that.onLoad;
+                that.onLoad();
               } else {
                 // 失败弹出框
                 wx.showToast({

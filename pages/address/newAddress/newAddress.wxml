@@ -14,7 +14,7 @@
 <view class = "item">
 <text>联系电话</text>
 <view class = "right">
-<input name="tel" type="number" value="{{tel}}"  placeholder="电话号码"/>
+<input name="phone" type="number" value="{{phone}}"  placeholder="电话号码"/>
 </view>
 </view>
 
@@ -22,7 +22,7 @@
 <view class = "item">
 <text>地区信息</text>
 <view class = "right">
-<input name="addre" type="text" value="{{addre}}"  placeholder=" 省/市/区"/>
+<input name="address" type="text" value="{{address}}"  placeholder=" 省/市/区"/>
 </view>
 </view>
 
